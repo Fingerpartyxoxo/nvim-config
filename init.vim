@@ -1,22 +1,30 @@
-"Hello-there!.v2"
+"hello----there!.v3"
 set number
-set expandtab
-set tabstop=3
+
+set noexpandtab
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set smartindent
+
 set laststatus=2
 set hlsearch
 set incsearch
+set splitright
 
 call plug#begin()
 Plug 'scrooloose/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'flazz/vim-colorschemes'
-call plug#end() 
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'cseelus/vim-colors-lucid'
+call plug#end()
 
-colorscheme gruvbox
+colorscheme dracula
 
 "--------------MAPPING--------------"
-"Deleting <, ^, v, > keys from n, v, s, o-modes 
+"Deleting <, ^, v, > keys from n, v, s, o-modes
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
@@ -26,18 +34,18 @@ noremap <Right> <nop>
 inoremap <Esc> <nop>
 "noremap <Esc> <Cmd>:x<cr>
 
-
+map <F5> :vsp<CR>:w<CR>:term g++ % && ./a.out<CR>i
+map <F6> :vsp<CR>:w<CR>:term python3 % <CR>i
 "Jump to next/previous non-empty line
 "nnoremap <Up> :<C-u>call search('^.\+', 'b')<CR>
 "nnoremap <Down> :<C-u>call search('^.\+')<CR>
 
-"noremap j k 
+"noremap j k
 "noremap k j
-
-
+"
 inoremap jj <Esc>
+map <F7> :w<CR>
 "------------------------------------"
-
 "------------vim-easymotion----------"
 let g:easymotion_leader_key = '\'
 nmap s <Plug>(easymotion-s2)
@@ -50,7 +58,7 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-let g:EasyMotion_smartcase = 1   " be a bit zalier about what to target
+let g:EasyMotion_smartcase = 1 " be a bit zalier about what to target
 let g:EasyMotion_do_shade = 1
 let g:EasyMotion_inc_highlight = 1
 let g:EasyMotion_move_highlight = 1
@@ -67,3 +75,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "--------------------------------------"
+
+"------vim-cpp-enhanced-highlight------"
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+"--------------------------------------"a
