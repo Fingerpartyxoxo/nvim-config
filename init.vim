@@ -1,4 +1,4 @@
-"hello----there!.v3"
+"Hello----there!.v3"
 set number
 
 set noexpandtab
@@ -16,12 +16,16 @@ call plug#begin()
 Plug 'scrooloose/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
-Plug 'flazz/vim-colorschemes'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'cseelus/vim-colors-lucid'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'rafi/awesome-vim-colorschemes' 
 call plug#end()
 
-colorscheme dracula
+let g:python3_host_prog = '/home/kxcoze/.pyenv/versions/neovim3/bin/python'
+
+
+colorscheme gruvbox
 
 "--------------MAPPING--------------"
 "Deleting <, ^, v, > keys from n, v, s, o-modes
@@ -45,6 +49,9 @@ map <F6> :vsp<CR>:w<CR>:term python3 % <CR>i
 "
 inoremap jj <Esc>
 map <F7> :w<CR>
+nnoremap <space> za
+vmap cc :norm i#<CR>
+vmap uc :norm ^x<CR>
 "------------------------------------"
 "------------vim-easymotion----------"
 let g:easymotion_leader_key = '\'
@@ -74,6 +81,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['']
 "--------------------------------------"
 
 "------vim-cpp-enhanced-highlight------"
@@ -83,4 +91,28 @@ let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
-"--------------------------------------"a
+"--------------------------------------"
+
+"------Semshi-python-------------------"
+let g:semshi#excluded_buffers = ['*']
+let g:semshi#filetypes = ['python']
+let g:semshi#excluded_hl_groups =  ['local']
+let g:semshi#mark_selected_nodes = 1
+let g:semshi#no_default_builtin_highlight = v:true
+
+nmap <silent> <leader>rr :Semshi rename<CR>
+
+nmap <silent> <Tab> :Semshi goto name next<CR>
+nmap <silent> <S-Tab> :Semshi goto name prev<CR>
+
+nmap <silent> <leader>c :Semshi goto class next<CR>
+nmap <silent> <leader>C :Semshi goto class prev<CR>
+
+nmap <silent> <leader>f :Semshi goto function next<CR>
+nmap <silent> <leader>F :Semshi goto function prev<CR>
+
+nmap <silent> <leader>gu :Semshi goto unresolved first<CR>
+nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
+
+nmap <silent> <leader>ee :Semshi error<CR>
+nmap <silent> <leader>ge :Semshi goto error<CR>
