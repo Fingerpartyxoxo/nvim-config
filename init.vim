@@ -20,9 +20,10 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'rafi/awesome-vim-colorschemes' 
+Plug 'nvie/vim-flake8'
 call plug#end()
 
-let g:python3_host_prog = '/home/kxcoze/.pyenv/versions/neovim3/bin/python'
+"let g:python3_host_prog = '/home/kxcoze/.pyenv/versions/neovim3/bin/python'
 
 
 colorscheme gruvbox
@@ -63,6 +64,8 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+
+ab ifmain if __name__ == '__main__':<CR>main()
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_smartcase = 1 " be a bit zalier about what to target
@@ -116,3 +119,8 @@ nmap <silent> <leader>gp :Semshi goto parameterUnused first<CR>
 
 nmap <silent> <leader>ee :Semshi error<CR>
 nmap <silent> <leader>ge :Semshi goto error<CR>
+
+"------vim-flake8---------------------"
+let g:flake8_show_in_file = 1
+autocmd FileType python map <buffer> <F8> :call flake8#Flake8()<CR>
+nnoremap <F9> :call flake8#Flake8ShowError()<cr>
