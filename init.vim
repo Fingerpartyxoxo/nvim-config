@@ -6,6 +6,7 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set smartindent
+set cursorline
 
 set laststatus=2
 set hlsearch
@@ -21,9 +22,21 @@ Plug 'cseelus/vim-colors-lucid'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'rafi/awesome-vim-colorschemes' 
 Plug 'nvie/vim-flake8'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 call plug#end()
 
-"let g:python3_host_prog = '/home/kxcoze/.pyenv/versions/neovim3/bin/python'
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/home/kxcoze/conf/pynvim/bin/python3.8'                                          
 
 
 colorscheme gruvbox
@@ -65,8 +78,13 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
-ab ifmain if __name__ == '__main__':<CR>main()
-
+ab #i #include
+ab #d #define 
+ab ifmain if __name__ == '__main__':<CR>main() <Left>
+ab for_ for _ in range(int(input())):<CR><Left>
+ab ab_ a, b = map(int, input().split())
+ab abc_ a, b, c = map(int, input().split())
+ab xyz_ x, y, z = map(int, input().split())
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_smartcase = 1 " be a bit zalier about what to target
 let g:EasyMotion_do_shade = 1
