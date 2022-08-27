@@ -1,4 +1,3 @@
-"Hello----there!.v3"
 set number
 
 set noexpandtab
@@ -26,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
+Plug 'mattn/webapi-vim'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -34,13 +34,15 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 call plug#end()
+autocmd FileType html,htmldjango,css,scss EmmetInstall
 
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = '/home/kxcoze/conf/pynvim/bin/python3.8'                                          
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/conf/nvim-config/snippets_custom.json')), "\n"))
 
 
 colorscheme gruvbox
-
+autocmd FileType c,cpp,java,php,python,python3 autocmd BufWritePre <buffer> %s/\s\+$//e
 "--------------MAPPING--------------"
 "Deleting <, ^, v, > keys from n, v, s, o-modes
 noremap <Up> <nop>
